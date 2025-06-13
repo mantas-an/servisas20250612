@@ -51,8 +51,9 @@ class Automobilis(models.Model):
     )
 
 class Uzsakymas(models.Model):
-    data = models.CharField(
+    data = models.DateTimeField(
         verbose_name="Uzsakymo data",
+        auto_now_add=True
 
     )
 
@@ -62,9 +63,7 @@ class Uzsakymas(models.Model):
         null=True
     )
 
-    suma = models.CharField(
-        verbose_name="Suma"
-    )
+
 
 
 class UzsakymoEilute(models.Model):
@@ -78,10 +77,8 @@ class UzsakymoEilute(models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
-    kiekis = models.CharField(
-        verbose_name="Kiekis"
+    kiekis = models.IntegerField(
+        verbose_name="Kiekis",
+        default=1
     )
 
-    kaina = models.CharField(
-        verbose_name="Kaina"
-    )
