@@ -1,4 +1,4 @@
-from tabnanny import verbose
+
 
 from django.db import models
 
@@ -19,6 +19,10 @@ class Paslauga(models.Model):
         default=0.00
     )
 
+    class Meta:
+        verbose_name = "Paslauga"
+        verbose_name_plural = "Paslaugos"
+
 class AutomobilioModelis(models.Model):
     marke = models.CharField(
         verbose_name="Automobilio marke",
@@ -28,6 +32,14 @@ class AutomobilioModelis(models.Model):
         verbose_name="Automobilio modelis",
         max_length=100
     )
+
+    class Meta:
+        verbose_name = "Automobilio modelis"
+        verbose_name_plural = "Automobiliu modeliai"
+
+    def __str__(self):
+        return f'{self.modelis}, {self.marke}'
+
 
 class Automobilis(models.Model):
     valstybinis_nr = models.CharField(
@@ -50,6 +62,14 @@ class Automobilis(models.Model):
         help_text="Iveskite Fizini ar Juridini asmeni"
     )
 
+    class Meta:
+        verbose_name = "Automobilis"
+        verbose_name_plural = "Automobiliai"
+
+    def __str__(self):
+        return f' {self.modelis}, ({self.valstybinis_nr})'
+
+
 class Uzsakymas(models.Model):
     data = models.DateTimeField(
         verbose_name="Uzsakymo data",
@@ -64,6 +84,16 @@ class Uzsakymas(models.Model):
     )
 
 
+    class Meta:
+        verbose_name = "Uzsakymas"
+        verbose_name_plural = "Uzsakymai"
+
+
+
+    def __str__(self):
+        return f'{self.data}, {self.automobilis}'
+
+
 
 
 class UzsakymoEilute(models.Model):
@@ -71,6 +101,7 @@ class UzsakymoEilute(models.Model):
         Paslauga,
         on_delete=models.SET_NULL,
         null=True
+
     )
     uzsakymas = models.ForeignKey(
         Uzsakymas,
@@ -81,4 +112,23 @@ class UzsakymoEilute(models.Model):
         verbose_name="Kiekis",
         default=1
     )
+
+
+
+
+    class Meta:
+        verbose_name = "Uzsakymo eilute"
+        verbose_name_plural = "Uzsakymo eilutes"
+
+
+
+    def __str__(self):
+        return f' {self.paslauga} '
+
+
+
+
+
+
+
 
