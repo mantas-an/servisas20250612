@@ -7,7 +7,7 @@ class UzsakymoEiluteInLine(admin.TabularInline):
 
 
 class UzsakymaiAdmin(admin.ModelAdmin):
-    list_display = ['automobilis', 'data']
+    list_display = ['automobilis', 'data', 'visa_suma'] #PRIDETI 'visa_suma' kai funkcija sutvarkysiu
     inlines = [UzsakymoEiluteInLine]
 
 

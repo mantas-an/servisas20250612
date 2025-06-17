@@ -84,14 +84,36 @@ class Uzsakymas(models.Model):
     )
 
 
+
+
     class Meta:
         verbose_name = "Uzsakymas"
         verbose_name_plural = "Uzsakymai"
 
 
 
+
     def __str__(self):
         return f'{self.data}, {self.automobilis}'
+
+
+
+    # def visa_suma(self):
+    #     lines = self.lines.all()
+    #     result = 0
+    #     for line in lines:
+    #         result += line.kaina * line.kiekis
+    #     return result
+
+    def visa_suma(self):
+        lines = self.lines.all()
+        result = 0
+        for line in lines:
+            result += line.paslauga.kaina * line.kiekis
+        return result
+
+    # def visa_suma(self):
+    #     return sum(line.suma() for line in self.lines.all())
 
 
 
@@ -103,16 +125,26 @@ class UzsakymoEilute(models.Model):
         null=True
 
     )
+
+
     uzsakymas = models.ForeignKey(
         Uzsakymas,
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        related_name="lines"
     )
+
+
     kiekis = models.IntegerField(
         verbose_name="Kiekis",
         default=1
     )
 
+
+
+
+    def suma(self):
+         return self.paslauga.kaina * self.kiekis
 
 
 
@@ -123,7 +155,7 @@ class UzsakymoEilute(models.Model):
 
 
     def __str__(self):
-        return f' {self.paslauga} '
+        return f' {self.paslauga}, {self.suma()}'
 
 
 
