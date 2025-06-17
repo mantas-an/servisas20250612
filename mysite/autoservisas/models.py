@@ -83,12 +83,30 @@ class Uzsakymas(models.Model):
         null=True
     )
 
+    STATUS = (
+        ('p', 'Patvirtinta'),
+        ('v', 'Vykdoma'),
+        ('a', 'Atlikta'),
+        ('t', 'Atšaukta'),
+    )
+
+    status = models.CharField(
+        max_length=1,
+        choices=STATUS,
+        blank=True,
+        default='p',
+        help_text='Statusas',
+    )
 
 
 
     class Meta:
         verbose_name = "Uzsakymas"
         verbose_name_plural = "Uzsakymai"
+
+
+
+
 
 
 
