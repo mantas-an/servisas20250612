@@ -1,0 +1,13 @@
+{% extends "autoservisas/base.html" %}
+
+{% block "title" %}HOME{% endblock %}
+
+{% block "content" %}
+  <h1>Serviso darbai:</h1>
+  <ul>
+    <li><strong>Paslaugu:</strong> {{ paslaugu_kiekis }}</li>
+    <li><strong>Uzsakymu:</strong> {{ uzsakymu_kiekis }}</li>
+    <li><strong>Automobiliu:</strong> {{ automobiliu_kiekis }}</li>
+
+  </ul>
+{% endblock %}
