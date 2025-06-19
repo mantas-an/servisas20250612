@@ -1,0 +1,9 @@
+{% extends "autoservisas/base.html" %}
+
+{% block "content" %}
+  <h1>Informacija apie automobilius</h1>
+  <p>Automobiliu Sarasas.</p>
+  {% for automobilis in automobiliai %}
+    <p><a href="{% url 'automobilis' automobilis.id %}">{{ automobilis.modelis }}</a></p>
+    {% endfor %}
+{% endblock %}

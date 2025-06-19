@@ -1,0 +1,35 @@
+{% extends "autoservisas/base.html" %}
+
+
+
+{% block "title" %}Užsakymas{% endblock %}
+
+{% block "content" %}
+<p><strong>Automobilis: </strong>{{ uzsakymas.automobilis }}</p>
+<p><strong>Data: </strong>{{ uzsakymas.data }}</p>
+<p><strong>Būsena: </strong>{{ uzsakymas.get_status_display }}</p>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Paslauga</th>
+        <th>Kaina</th>
+        <th>Kiekis</th>
+        <th>Suma</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for line in uzsakymas.lines.all %}
+      <tr>
+        <td>{{ line.paslauga }}</td>
+        <td class="pe-5">{{ line.paslauga.kaina }}&nbspEur</td>
+        <td>{{ line.kiekis }}</td>
+        <td>{{ line.suma }}</td>
+      </tr>
+{% endfor %}
+      <tr>
+          <td colspan="3" class="text-end"><strong>BENDRA SUMA:</strong></td>
+          <td><strong>{{ uzsakymas.visa_suma }}</strong></td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

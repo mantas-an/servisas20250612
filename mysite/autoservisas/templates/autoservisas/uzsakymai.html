@@ -1,0 +1,19 @@
+{% extends "autoservisas/base.html" %}
+
+{% block "title" %}Uzsakymai{% endblock %}
+
+{% block "content" %}
+  <h1>Visi uzsakymai:</h1>
+
+  <ul>
+    {% for uzsakymas in uzsakymai %}
+      <li>
+        <a href="{{ uzsakymas.pk }}">{{ uzsakymas }}</a>
+
+      </li>
+
+    {% endfor %}
+  </ul>
+
+{% endblock %}
+

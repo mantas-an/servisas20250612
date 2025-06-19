@@ -1,0 +1,17 @@
+{% extends "autoservisas/base.html" %}
+
+{% block "title" %}Automobilis{% endblock %}
+
+{% block "content" %}
+
+<p><strong>Modelis: </strong>{{ automobilis.modelis }}</p>
+<p><strong>Klientas: </strong>{{ automobilis.klientas }}</p>
+<p><strong>Valstybinis numeris: </strong>{{ automobilis.valstybinis_nr }}</p>
+<p><strong>VIN kodas: </strong>{{ automobilis.vin_kodas }}</p>
+
+<hr>
+
+{% for automobilis in automobiliai.modelis.all %}
+<p></p>
+{% endfor %}
+{% endblock %}
