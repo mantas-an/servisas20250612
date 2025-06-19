@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Paslauga, Uzsakymas, UzsakymoEilute, Automobilis, AutomobilioModelis
@@ -23,8 +24,13 @@ def index(request):
 def automobiliai(request):
 
     automobiliai = Automobilis.objects.all()
+    paginator = Paginator(automobiliai, per_page=2)
+    page_number = request.GET.get('page')
+    paged_automobiliai = paginator.get_page(page_number)
+
     context = {
-        'automobiliai': automobiliai,
+        'automobiliai': paged_automobiliai,
+
     }
     # print(automobiliai)
 
@@ -43,6 +49,7 @@ class UzsakymaiListView(generic.ListView):
     model = Uzsakymas
     template_name = "autoservisas/uzsakymai.html"
     context_object_name = "uzsakymai"
+    paginate_by = 3
 
 class UzsakymasDetailView(generic.DetailView):
     model = Uzsakymas
